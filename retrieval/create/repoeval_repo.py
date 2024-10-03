@@ -6,7 +6,7 @@ import argparse
 import requests
 import zipfile
 from collections import defaultdict
-from create.utils import save_tsv_dict, save_file_jsonl
+from utils import save_tsv_dict, save_file_jsonl
 
 REPOs_line_and_api = [
     'huggingface_diffusers',
