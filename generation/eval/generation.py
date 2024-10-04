@@ -1,3 +1,4 @@
+import os
 import json
 import time
 import openai
@@ -13,7 +14,7 @@ from transformers import StoppingCriteria, StoppingCriteriaList
 from eval.utils import TokenizedDataset, complete_code
 
 from openai import OpenAI
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI()
 
 class EndOfFunctionCriteria(StoppingCriteria):
     """Custom `StoppingCriteria` which checks if all generated functions in the batch are completed."""
