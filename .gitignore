@@ -163,7 +163,12 @@ cython_debug/
 
 ## code-rag-bench
 # dataset
-retrieval/datasets/
+retrieval/datasets/post_ast
+retrieval/datasets/repoeval__deepmind_tracr/
+retrieval/datasets/repoeval__facebookresearch_omnivore/
+retrieval/datasets/repoeval__google_lightweight_mmm/
+retrieval/datasets/repoeval__lucidrains_imagen-pytorch/
+retrieval/datasets/repoeval__maxhumber_redframes/
 # generated bm25_indices and project-x-corpora
 retrieval/repo_retrieval/repoeval/bm25_indices/
 retrieval/repo_retrieval/repoeval/project-x-corpora/
