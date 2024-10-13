@@ -2,9 +2,10 @@ import os
 import json
 import ast
 
-data_dir = "datasets/pre_ast/"
+src_dir = "datasets/"
+dst_dir = "datasets/post_ast/"
 
-
+# =============== utils =============== #
 def load_json_data(path):
     '''
     Load json data from file path {path}
@@ -25,6 +26,7 @@ def write_json_data(path, data):
             json.dump(line, f)
             f.write('\n')
 
+# =============== helper =============== #
 def convert_node_to_ast(node):
     '''
     Convert the subtree with root node {node} to the AST structure as a string in A(BC(DE)) format
@@ -49,8 +51,8 @@ def convert_node_to_ast(node):
 
 # Main
 if __name__ == "__main__":
-    for dir_name in os.listdir(data_dir):
-        dir_path = os.path.join(data_dir, dir_name)
+    for dir_name in os.listdir(src_dir):
+        dir_path = os.path.join(src_dir, dir_name)
 
         ## select repoeval dir
         if os.path.isdir(dir_path) and dir_name.startswith("repoeval__"):
@@ -87,7 +89,7 @@ if __name__ == "__main__":
                     pass
 
             ## dump json to output file
-            output_dir = os.path.join("datasets/", dir_name)
+            output_dir = os.path.join(dst_dir, dir_name)
             output_query_path = os.path.join(output_dir, "queries.jsonl")
             output_corpus_path = os.path.join(output_dir, "corpus.jsonl")
             write_json_data(output_query_path, query_data)

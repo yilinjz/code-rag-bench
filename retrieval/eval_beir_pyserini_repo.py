@@ -24,6 +24,9 @@ from pyserini import analysis
 from modify_corpus_for_bm25 import modify_single_dataset_repo, index_single_dataset_repo
 
 
+# source dir of datasets
+datasets_src_dir = "datasets/post_ast"
+
 #### Just some code to print debug information to stdout
 logging.basicConfig(format='%(asctime)s - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S',
@@ -90,13 +93,13 @@ def main():
         swebench = load_dataset("princeton-nlp/SWE-bench_Lite")["test"]
         all_top_docs = [[] for _ in swebench]
 
-    instance_list = [i for i in os.listdir("datasets") if i.startswith(f"{args.dataset}_")]
+    instance_list = [i for i in os.listdir(datasets_src_dir) if i.startswith(f"{args.dataset}_")]
 
     for ins_dir in instance_list:
         logging.info("Instance Repo: {}".format(ins_dir))
         # load data and perform retrieval
         corpus, queries, qrels = GenericDataLoader(
-            data_folder=os.path.join("datasets", ins_dir)
+            data_folder=os.path.join(datasets_src_dir, ins_dir)
         ).load(split="test")
 
         start_time = time()
@@ -113,7 +116,7 @@ def main():
             searcher = SimpleSearcher(args.index_path)
         else:
             # modify the corpus to be in the format of pyserini
-            modify_single_dataset_repo(dataset_dir="datasets",
+            modify_single_dataset_repo(dataset_dir=datasets_src_dir,
                                        ins_dir=ins_dir,
                                        output_metadir=args.output_metadir,
                                        dataset=args.dataset)
