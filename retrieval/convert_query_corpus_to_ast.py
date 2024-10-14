@@ -67,13 +67,13 @@ if __name__ == "__main__":
             for i, query in enumerate(query_data):
                 try:
                     ## code_snippet format: incomplete_cdoe (i.e. query) + ground_truth (i.e. canonical answer) 
-                    code_snippet = f"""{query['text']}\n{query['metadata']['ground_truth']}"""
+                    code_snippet = f"{query['text']}\n{query['metadata']['ground_truth']}"
                     ## try parsing complete code
                     parsed_tree = ast.parse(code_snippet)
                     ## convert nodes to ast
                     query_ast = convert_node_to_ast(parsed_tree)
                     ## append ast to text
-                    query_data[i]['text'] = f"""{query_data[i]['text']}\n\nAST={query_ast}"""
+                    query_data[i]['text'] = f"{query_data[i]['text']}\n\nAST={query_ast}"
                 except SyntaxError as e:
                     pass
             for i, corpus in enumerate(corpus_data):
