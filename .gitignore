@@ -170,10 +170,10 @@ retrieval/datasets/repoeval__google_lightweight_mmm/
 retrieval/datasets/repoeval__lucidrains_imagen-pytorch/
 retrieval/datasets/repoeval__maxhumber_redframes/
 # generated bm25_indices and project-x-corpora
-retrieval/repo_retrieval/repoeval/bm25_indices/
-retrieval/repo_retrieval/repoeval/project-x-corpora/
-retrieval/repo_retrieval/repoeval/post_ast/bm25_indices/
-retrieval/repo_retrieval/repoeval/post_ast/project-x-corpora/
+retrieval/bm25_retrieval_data/repoeval/bm25_indices/
+retrieval/bm25_retrieval_data/repoeval/project-x-corpora/
+retrieval/bm25_retrieval_data/repoeval/post_ast/bm25_indices/
+retrieval/bm25_retrieval_data/repoeval/post_ast/project-x-corpora/
 # retrieval results (since over 100MB)
-retrieval/repo_retrieval/repoeval/results.json
-retrieval/repo_retrieval/repoeval/post_ast/results.json
+retrieval/bm25_retrieval_data/repoeval/results.json
+retrieval/bm25_retrieval_data/repoeval/post_ast/results.json
