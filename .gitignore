@@ -162,6 +162,8 @@ cython_debug/
 #.idea/
 
 ## code-rag-bench
+# palette for quick test of idea
+retrieval/palette.py
 # dataset
 retrieval/datasets/post_ast
 retrieval/datasets/repoeval__deepmind_tracr/
