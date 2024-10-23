@@ -3,7 +3,7 @@ import json
 import ast
 
 src_dir = "datasets/"
-dst_dir = "datasets/post_ast/"
+dst_dir = "datasets/corpus_text_ast/"
 
 # =============== utils =============== #
 def load_json_data(path):
@@ -64,18 +64,18 @@ if __name__ == "__main__":
             corpus_data = load_json_data(corpus_path)
 
             ## convert code to code + ast
-            for i, query in enumerate(query_data):
-                try:
-                    ## code_snippet format: incomplete_cdoe (i.e. query) + ground_truth (i.e. canonical answer) 
-                    code_snippet = f"{query['text']}\n{query['metadata']['ground_truth']}"
-                    ## try parsing complete code
-                    parsed_tree = ast.parse(code_snippet)
-                    ## convert nodes to ast
-                    query_ast = convert_node_to_ast(parsed_tree)
-                    ## append ast to text
-                    query_data[i]['text'] = f"{query_data[i]['text']}\n\nAST={query_ast}"
-                except SyntaxError as e:
-                    pass
+            # for i, query in enumerate(query_data):
+            #     try:
+            #         ## code_snippet format: incomplete_cdoe (i.e. query) + ground_truth (i.e. canonical answer) 
+            #         code_snippet = f"{query['text']}\n{query['metadata']['ground_truth']}"
+            #         ## try parsing complete code
+            #         parsed_tree = ast.parse(code_snippet)
+            #         ## convert nodes to ast
+            #         query_ast = convert_node_to_ast(parsed_tree)
+            #         ## append ast to text
+            #         query_data[i]['text'] = f"{query_data[i]['text']}\n\nAST={query_ast}"
+            #     except SyntaxError as e:
+            #         pass
             for i, corpus in enumerate(corpus_data):
                 try:
                     code_snippet = corpus['text']
@@ -84,6 +84,7 @@ if __name__ == "__main__":
                     ## convert nodes to ast
                     corpus_ast = convert_node_to_ast(parsed_tree)
                     ## append ast to text
+                    # corpus_data[i]['text'] = f"""AST={corpus_ast}"""
                     corpus_data[i]['text'] = f"""{corpus_data[i]['text']}\n\nAST={corpus_ast}"""
                 except SyntaxError as e:
                     pass

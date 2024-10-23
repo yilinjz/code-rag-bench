@@ -14,7 +14,7 @@ from beir.retrieval.search.dense import DenseRetrievalExactSearch as DRES
 from tqdm import tqdm
 
 # source dir of datasets
-datasets_src_dir = "datasets/post_ast"
+datasets_src_dir = "datasets/corpus_text_ast"
 
 #### Just some code to print debug information to stdout
 logging.basicConfig(format='%(asctime)s - %(message)s',
