@@ -13,6 +13,9 @@ from beir.retrieval.evaluation import EvaluateRetrieval
 from beir.retrieval.search.dense import DenseRetrievalExactSearch as DRES
 from tqdm import tqdm
 
+# source dir of datasets
+datasets_src_dir = "datasets/post_ast"
+
 #### Just some code to print debug information to stdout
 logging.basicConfig(format='%(asctime)s - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S',
@@ -46,14 +49,14 @@ def main():
             swebench = load_dataset("princeton-nlp/SWE-bench_Lite")["test"]
             all_top_docs = [[] for _ in swebench]
 
-        instance_list = [i for i in os.listdir("datasets") if i.startswith(f"{args.dataset}_")]
+        instance_list = [i for i in os.listdir(datasets_src_dir) if i.startswith(f"{args.dataset}_")]
         instance_list_filtered = []
         
         for ins_dir in tqdm(instance_list):
             logging.info("Instance Repo: {}".format(ins_dir))
             # load data and perform retrieval
             corpus, queries, qrels = GenericDataLoader(
-                data_folder=os.path.join("datasets", ins_dir)
+                data_folder=os.path.join(datasets_src_dir, ins_dir)
             ).load(split="test")
             logging.info(f"Instance #{ins_dir}: #{len(corpus)} corpus, #{len(queries)} queries")
 
@@ -136,7 +139,7 @@ def main():
             json.dump(avg_eval_results, f)
     else:
         dataset =  args.dataset
-        corpus, queries, qrels = GenericDataLoader(data_folder=os.path.join("datasets", args.dataset)).load(split="test")
+        corpus, queries, qrels = GenericDataLoader(data_folder=os.path.join(datasets_src_dir, args.dataset)).load(split="test")
         #### Retrieve dense results (format of results is identical to qrels)
         start_time = time()
         results = retriever.retrieve(corpus, queries)
